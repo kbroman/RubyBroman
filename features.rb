@@ -81,8 +81,8 @@ end
 # other array methods
 x = (1..5).to_a
 y = [2, 4, 1]
-puts x + y
-puts x - y
+puts (x + y).join(":")
+puts (x - y).join(":")
 puts (x-y).empty?
 puts (x-y).include?(3)
 puts (x-y).include?("x")
