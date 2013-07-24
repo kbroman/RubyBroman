@@ -153,9 +153,11 @@ p person2 = { :name => "Ginger", :age => 18, :gender => :female }
 "blah".to_sym   # to symbol
 252.3.to_s      # to string
 
-# text manipulation
+# a bit of text manipulation
 text = %q{We may at once admit that any inference from the particular to the general must be attended with some degree of uncertainty, but this is not the same as to admit that such inference cannot be absolutely rigorous, for the nature and degree of the uncertainty may itself be capable of rigorous expression.} 
 stopwords = %w{the a by on for of are with just but and to my in I has some}.map {|z| z.downcase}
 words = text.downcase.scan(/\w+/)
 keywords = words.select { |w| !stopwords.include?(w) }
 puts keywords.join(" ")
+puts %|no. char  = #{keywords.join(" ").length}|
+puts "no. words = #{keywords.length}"
