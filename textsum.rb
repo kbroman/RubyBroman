@@ -23,7 +23,3 @@ puts "no. paragraphs = #{n_para}"
 
 printf "ave words per sentence = %.1f\n", n_words.to_f / n_sentences.to_f
 printf "ave sentences per para = %.1f\n", n_sentences.to_f / n_para.to_f
-
-
-
-
