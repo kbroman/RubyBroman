@@ -161,3 +161,11 @@ keywords = words.select { |w| !stopwords.include?(w) }
 puts keywords.join(" ")
 puts %|no. char  = #{keywords.join(" ").length}|
 puts "no. words = #{keywords.length}"
+
+# playing with map
+n = 8
+counts = 1.upto(n).map { 0 }
+puts counts.join(" ")
+x = 1.upto(1000).map {|z| rand(8)}
+x.each {|z| counts[z] = counts[z] + 1 }
+puts counts.join(" ")
