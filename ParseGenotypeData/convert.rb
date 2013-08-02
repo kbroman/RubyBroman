@@ -36,7 +36,7 @@ def read_families (filename)
   file.readlines.each do |line|
     vals = line.split(/\s+/)
     vals.shift if vals[0] == "" # deal with leading spaces
-    person = Person.new(*vals)
+    person = Person.new(*vals)  # *vals makes vals elements separate arguments
     people[person.famid] = person
   end
   people
