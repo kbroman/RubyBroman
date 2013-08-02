@@ -22,6 +22,7 @@ class Person
     @dad = dad
     @mom = mom
     @sex = sex
+    @sex = "0" if @sex == "2" # convert from 1/2 to 1/0
     @famid = "#{family}-#{id}"
     @gen = {}
   end
@@ -41,6 +42,14 @@ def read_families (filename)
   people
 end
     
+# clean up string - > genotype
+def parse_genotype (string)
+  string = string.gsub(/\s/, "")
+  string = "0/0" if string == ""
+  string.sub(/\//, " ")
+end
+
+
 # read genotype data, fill in genotypes within people hash
 def read_genotypes (filename, people)
   file = File.open(filename)
@@ -54,8 +63,7 @@ def read_genotypes (filename, people)
     line = line[9..-1]
     header.each_with_index do |person, i|
       start = i*7
-      genotype = line[start..(start+7)].gsub(/\s/, "").split(/\//)
-      people[person].gen[marker] = genotype.join(" ")
+      people[person].gen[marker] = parse_genotype line[start..(start+6)]
     end
   end
 end
@@ -68,26 +76,44 @@ def unique (arr)
 end
 
 # distinct families
-def families (people)
+def get_families (people)
   unique people.keys.map {|id| id.split(/\-/)[0]}
 end
 
 # people within a family
-def family_members (people, family)
-  people.select { |key| people[key].family == family }
+def get_family_members (people, family)
+  people.keys.select { |key| people[key].family == family }
 end
 
 def write_genfile (filename, people, markers)
   file = File.open(filename, "w")
   
-end
+  families = get_families(people)
+  file.write("#{families.length}\n")
 
+  file.write("#{markers.length}\n")
+  markers.each {|marker| file.write(marker + "\n") }
+
+  families.each do |family|
+    file.write("#{family}\n")
+    members = get_family_members(people, family)
+    file.write("#{members.length}\n")
+    members.each do |key|
+      person = people[key]
+      file.write("#{person.id} #{person.mom} #{person.dad} #{person.sex}\n")
+
+      markers.each do |marker|
+        file.write(person.gen[marker] + " ")
+      end
+      file.write("\n")
+    end
+  end
+end
 
 # read the data
 markers = read_markers(mfile)
 people = read_families(ffile)
 read_genotypes(gfile, people)
 
-puts families(people).join("|")
-puts people.keys.join("|")
-puts family_members(people, "1").keys.join("|")
+# write the data
+write_genfile(ofile, people, markers)
