@@ -2,7 +2,7 @@
 # and convert them into a CRI-MAP .gen file
 #
 # This is a ruby version of the perl script discussed in my "Intro to perl"
-# at http://www.biostat.wisc.edu/~kbroman/perlintro/
+# at http://www.biostat.wisc.edu/~kbroman/perlintro/index.html#ex2
 
 # file names
 gfile = "genotypes.txt" # genotype data

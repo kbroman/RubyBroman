@@ -1,6 +1,6 @@
 ## ParseGenotypeData
 
-Ruby version of the long example perl script in my
+Ruby version of the [long example perl script](http://www.biostat.wisc.edu/~kbroman/perlintro/index.html#ex2) in my
 [Intro to perl](http://www.biostat.wisc.edu/~kbroman/perlintro/).
 
 The goal is to take three files obtained from a collaborator (genotype
