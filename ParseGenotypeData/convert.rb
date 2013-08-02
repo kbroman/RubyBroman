@@ -68,16 +68,9 @@ def read_genotypes (filename, people)
   end
 end
 
-# unique values for a vector
-def unique (arr)
-  h = {}
-  arr.each { |z| h[z] = 1 }
-  h.keys
-end
-
 # distinct families
 def get_families (people)
-  unique people.keys.map {|id| id.split(/\-/)[0]}
+  people.keys.map {|id| id.split(/\-/)[0]}.uniq
 end
 
 # people within a family
