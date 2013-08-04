@@ -49,7 +49,6 @@ def parse_genotype (string)
   string.sub(/\//, " ")
 end
 
-
 # read genotype data, fill in genotypes within people hash
 def read_genotypes (filename, people)
   file = File.open(filename)
@@ -75,7 +74,7 @@ end
 
 # people within a family
 def get_family_members (people, family)
-  people.keys.select { |key| people[key].family == family }
+  people.select { |key,person| person.family == family }
 end
 
 def write_genfile (filename, people, markers)
@@ -91,8 +90,8 @@ def write_genfile (filename, people, markers)
     file.write("#{family}\n")
     members = get_family_members(people, family)
     file.write("#{members.length}\n")
-    members.each do |key|
-      person = people[key]
+
+    members.each do |key,person|
       file.write("#{person.id} #{person.mom} #{person.dad} #{person.sex}\n")
 
       markers.each do |marker|
