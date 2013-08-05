@@ -34,9 +34,8 @@ def read_families (filename)
   file.readline # header row
   people = {}
   file.readlines.each do |line|
-    vals = line.split(/\s+/)
-    vals.shift if vals[0] == "" # deal with leading spaces
-    person = Person.new(*vals)  # *vals makes vals elements separate arguments
+    vals = line.strip.split(/\s+/) # strip removes leading and ending white space
+    person = Person.new(*vals)     # *vals makes vals elements separate arguments
     people[person.famid] = person
   end
   people
@@ -53,8 +52,7 @@ end
 def read_genotypes (filename, people)
   file = File.open(filename)
 
-  header = file.readline.split(/\s+/)
-  header.shift if header[0] == ""
+  header = file.readline.strip.split(/\s+/)
   header.shift # omit the first field, "Marker"
 
   file.readlines.each do |line|
