@@ -169,3 +169,15 @@ puts counts.join(" ")
 x = 1.upto(1000).map {|z| rand(8)}
 x.each {|z| counts[z] = counts[z] + 1 }
 puts counts.join(" ")
+
+# looping over hashes (also sorting)
+words = %w{We may at once admit that any inference from the particular to the general must be attended with some degree of uncertainty, but this is not the same as to admit that such inference cannot be absolutely rigorous, for the nature and degree of the uncertainty may itself be capable of rigorous expression.} 
+words = words.map { |z| z.gsub(/[,\.]/, "") }
+wordcount = {}
+words.each { |z| wordcount[z] = wordcount[z].nil? ? 1 : wordcount[z] + 1 }
+def by_count_and_length (a,b,hash)
+  return a.length <=> b.length if hash[a] == hash[b]
+  hash[a] <=> hash[b]
+end
+wordcount.keys.sort {|a,b| by_count_and_length(a,b,wordcount) }.each {|z| puts "#{z} => #{wordcount[z]}"}
+
