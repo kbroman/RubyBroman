@@ -181,3 +181,32 @@ def by_count_and_length (a,b,hash)
 end
 wordcount.keys.sort {|a,b| by_count_and_length(a,b,wordcount) }.each {|z| puts "#{z} => #{wordcount[z]}"}
 
+# regex
+puts "ok 1" if /AM/i =~ 'am'
+puts "ok 2" if /\Ablah/ =~ "blah a number of special\nAll of these are"
+puts "ok 3" unless /\AAll/ =~ "blah a number of special\nAll of these are"
+puts "ok 4" if /^blah/ =~ "blah a number of special\nAll of these are"
+puts "ok 5" if /^All/ =~ "blah a number of special\nAll of these are"
+puts "ok 6" unless /special\z/ =~ "blah a number of special\nAll of these are"
+puts "ok 7" if /are\z/ =~ "blah a number of special\nAll of these are"
+puts "ok 8" if /special$/ =~ "blah a number of special\nAll of these are"
+puts "ok 9" if /are$/ =~ "blah a number of special\nAll of these are"
+puts "ok 10" unless /blah.*are/ =~ "blah a number of special\nAll of these are"
+puts "ok 11" if /blah.*are/m =~ "blah a number of special\nAll of these are"
+$x = "Today is 8/6/2013, while tomorrow is 8/7/2013."
+if $x =~ /(\d+)\/(\d+)\/(\d+)/ # $~ contains info about
+  puts "Month = #{$~[1]}, day = #{$~[2]}, year = #{$~[3]}"
+  puts "Month = #{$1}, day = #{$2}, year = #{$3}"
+  puts $& # matched text
+  puts $` # text before the match
+  puts $' # text after the match
+  puts $+ # last bit of the match
+end
+
+# symbols and strings
+the_string = :all.to_s
+the_symbol = "all".to_sym
+puts the_string.to_sym == the_symbol
+puts the_string.to_sym.equal?(the_symbol)
+puts the_symbol.to_s == the_string
+puts (not the_symbol.to_s.equal?(the_string))
