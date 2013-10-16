@@ -9,7 +9,7 @@
 #
 # if inputfile is file.xls and outputstem is not given,
 #     output files will be like file_[sheetname].csv
-# 
+#
 # The default separator is ','
 # If some fields contain commas, you might use '|'
 
