@@ -13,3 +13,5 @@ single file in the format used byt the CRI-MAP program.
 - `data_save.gen` &mdash; desired output file
 - `convert.pl` &mdash; original perl script
 - `convert.rb` &mdash; ruby script
+
+Also see the [Python version](https://github.com/kbroman/PyBroman/blob/master/ParseGenotypeData/convert.py).
