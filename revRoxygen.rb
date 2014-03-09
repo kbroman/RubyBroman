@@ -55,7 +55,7 @@ def parseRdfile (filename)
 
   args.each do |arg|
     rcomment += "#'\n"
-    rcomment += "#' @param #{arg[0]} "
+    rcomment += "#' @param #{arg[0]}\n"
     rcomment += convert4comment(arg[1])
   end
 
