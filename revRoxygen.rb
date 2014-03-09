@@ -3,8 +3,6 @@
 # from the files in a .Rd subdirectory, attempt to convert to R
 # comment format that Roxygen2 would want.
 
-
-
 def findField (string, field)
   return "" unless string =~ /\\#{field}\{(.*)\}/m
 
@@ -22,7 +20,8 @@ def processField (string)
 end
     
 def findItems (string)
-  string.scan(/\\item\{([^\}]+)\}\s*\{([^\{]+)\}/m)
+  result = string.scan(/\\item\{([^\}]+)\}\s*\{(((?!\\item).)*)\}/m)
+  result.map { |z| z[0] = z[0].sub("\\dots", "..."); z }
 end  
 
 def convert4comment (string)
