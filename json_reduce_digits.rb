@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 # reduce the number of digits in a json file
+# (this reduces to 4 digits past decimal)
 
 ifilename = ARGV[0]
 ofilename = ifilename.sub(/(.+)\.json/, '\1_rev.json')
