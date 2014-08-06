@@ -5,6 +5,12 @@
 # stripping off all \dontrun{} and \dontshow{} so that I can run
 # _everything_, including things that open a web browser.
 
+# I ended up not using this. In the Rd files, I'm using \donttest{} to
+# have some code that will not run during R CMD check but will still
+# run with examples(), and then I use devtools::run_examples() to run
+# all of the examples in the package, for the full test of the example
+# code.
+
 mandir = 'qtlcharts/man'
 exdir = 'test_examples'
 exfile = 'qtlcharts_ex.R'
