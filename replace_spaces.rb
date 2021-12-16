@@ -4,4 +4,4 @@
 file = ARGV.join(' ')
 newfile = file.gsub(/\s+/, '_')
 puts "#{file} -> #{newfile}"
-`mv "#{file}" #{newfile}`
+`mv "#{file}" "#{newfile}"`
